@@ -6,7 +6,7 @@ import numpy as np
 
 
 class OutlierHandling:
-    
+
     exception_list = []
 
     # this funciton will work on getting the iqr, lower/upper bounds from a column
@@ -24,8 +24,24 @@ class OutlierHandling:
             self.exception_list.append("fit_iqr exception as :", e)
             return None
 
-    def fit_transform_IQR(self, column: pd.series):
+    def fit_transform_IQR(self, column: pd.Series):
         c = column.copy()
         iqr, lower, upper = self.fit_IQR(c)
         c = c[(c > lower) & (c < upper)]
         return c
+
+    def display_outliers(self, column: pd.Series):
+        counter = 0
+        higher_outliers = []
+        lower_outliers = []
+        c = column.copy()
+        iqr, lower, upper = self.fit_IQR(c)
+        for i in c:
+            if i > upper:
+                higher_outliers.append[i]
+                print(f"{counter} : {i}")
+            elif i < lower:
+                lower_outliers.append[i]
+                print(f"{counter} : {i}")
+            counter += 1
+        return higher_outliers, lower_outliers
