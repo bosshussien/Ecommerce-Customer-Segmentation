@@ -9,6 +9,9 @@ class OutlierHandling:
 
     exception_list = []
 
+    def __init__(self):
+        pass
+
     # this funciton will work on getting the iqr, lower/upper bounds from a column
     def fit_IQR(self, column: pd.Series):
         c = column.copy()
