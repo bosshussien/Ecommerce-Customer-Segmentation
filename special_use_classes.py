@@ -40,10 +40,10 @@ class OutlierHandling:
         c = column.copy()
         iqr, lower, upper = self.fit_IQR(c)
         for i in c:
-            if (i > upper):
+            if i > upper:
                 higher_outliers.append(i)
                 print(f"{counter} : {i}")
-            elif (i < lower):
+            elif i < lower:
                 lower_outliers.append(i)
                 print(f"{counter} : {i}")
             counter += 1
